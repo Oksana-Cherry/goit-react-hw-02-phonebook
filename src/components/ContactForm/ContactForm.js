@@ -63,7 +63,7 @@ class ContactForm extends Component {
           <input
             className={styles.Form_input}
             type="tel"
-            name="phone"
+            name="number"
             placeholder=""
             value={number}
             onChange={this.handleChange}
