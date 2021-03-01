@@ -1,20 +1,22 @@
 import PropTypes from 'prop-types';
+import styles from './ContactList.module.css';
 
 const ContactListItem = ({ id, name, number, onDelete }) => {
   return (
-    <li key={id}>
-      <p>
-        {name}: {number}
-      </p>
-      <button onClick={() => onDelete(id)}>Delete</button>
+    <li className={styles.List_item} key={id}>
+      <p>{name + ': ' + number}</p>
+      <button className={styles.List_button} onClick={() => onDelete(id)}>
+        Delete
+      </button>
     </li>
   );
 };
 
 const ContactList = ({ contacts, onDelete }) => {
   if (contacts.length === 0) return null;
+
   return (
-    <ul>
+    <ul className={styles.List}>
       {contacts.map(contact => (
         <ContactListItem key={contact.id} {...contact} onDelete={onDelete} />
       ))}

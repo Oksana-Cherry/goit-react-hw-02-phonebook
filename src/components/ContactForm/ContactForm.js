@@ -1,6 +1,9 @@
+import PropTypes from 'prop-types';
+import styles from './ContactForm.module.css';
 import { Component } from 'react';
-/*const ContactForm = () => {};*/
+
 import { v4 as uuid } from 'uuid';
+
 class ContactForm extends Component {
   state = {
     name: '',
@@ -32,6 +35,7 @@ class ContactForm extends Component {
     const { onCheckUnique } = this.props;
     if (!name || !number) {
       alert(`Some field is empty`);
+
       return false;
     }
     return onCheckUnique(name);
@@ -42,25 +46,38 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter name"
-          value={name}
-          onChange={this.handleChange}
-        />
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Enter phone"
-          value={number}
-          onChange={this.handleChange}
-        />
-        <button type="submit">Add contact</button>
+      <form className={styles.Forms} onSubmit={this.handleSubmit}>
+        <label className={styles.Form_label}>
+          Name
+          <input
+            className={styles.Form_input}
+            type="text"
+            name="name"
+            placeholder=""
+            value={name}
+            onChange={this.handleChange}
+          />
+        </label>
+        <label className={styles.Form_label}>
+          Number
+          <input
+            className={styles.Form_input}
+            type="tel"
+            name="phone"
+            placeholder=""
+            value={number}
+            onChange={this.handleChange}
+          />
+        </label>
+        <button className={styles.Form_button} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }
 }
-
+ContactForm.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+  onCheckUnique: PropTypes.func.isRequired,
+};
 export default ContactForm;

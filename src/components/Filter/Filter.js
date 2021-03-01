@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types';
+import styles from './Filter.module.css';
+
 const Filter = ({ filter, onChange }) => {
   return (
-    <input
-      type="text"
-      name="filter"
-      value={filter}
-      onChange={target => onChange(target.value)}
-      placeholder="Enter name form Search"
-    />
+    <label className={styles.Title}>
+      Find contacts by name
+      <input
+        className={styles.Title_input}
+        type="text"
+        name="filter"
+        value={filter}
+        onChange={target => onChange(target.value)}
+      />
+    </label>
   );
 };
 
